@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Vacation Village</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+	<style>
+	/* Add a dark background color with a little bit see-through */
+.navbar {
+  margin-bottom: 0;
+  background-color: #2d2d30;
+  border: 0;
+  font-size: 11px !important;
+  letter-spacing: 4px;
+  opacity: 0.9;
+}
+
+/* Add a gray color to all navbar links */
+.navbar li a, .navbar .navbar-brand {
+  color: #d5d5d5 !important;
+}
+
+/* On hover, the links will turn white */
+.navbar-nav li a:hover {
+  color: #fff !important;
+}
+
+/* The active link */
+.navbar-nav li.active a {
+  color: #fff !important;
+  background-color:#29292c !important;
+}
+
+/* Remove border color from the collapsible button */
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+}
+
+/* Dropdown */
+.open .dropdown-toggle {
+  color: #fff ;
+  background-color: #555 !important;
+}
+
+/* Dropdown links */
+.dropdown-menu li a {
+  color: #000 !important;
+}
+
+/* On hover, the dropdown links will turn red */
+.dropdown-menu li a:hover {
+  background-color: red !important;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body{
+background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: 100%;
+font-family: 'Numans', sans-serif;
+}
+
+.container{
+height: 100%;
+align-content: center;
+}
+
+.card{
+height: 370px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0,0,0,0.5) !important;
+}
+.card-header h3{
+color: white;
+}
+h3{
+color: white;
+}
+h2{
+color: white;
+}
+.social_icon{
+position: absolute;
+right: 20px;
+top: -45px;
+}
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+color: white;
+}
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+}
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+}
+	</style>
+</head>
+<body>
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+      	<li><a th:text="${animatorId}"></a></li>
+        <li><a href="http://localhost:8080">Log out</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<div class="container text-center">
+  <br><br><br>
+  <h3>Choose an activity type to create.</h3>
+  <br>
+ <div class="row text-center" style = "background-color: rgba(0,0,0,0.5)">
+  <div class="col-sm-6">
+    <div class="thumbnail"  style = "background-color: rgba(0,0,0,0.5)">
+      <h2><strong>Create Mass Activity</strong></h2>
+      <img src="https://www.alexiaresort.com/images/aktiviteler.jpg"/>
+      <br>
+      <form th:action="@{'http://localhost:8080/api/v1/massactivity/getAll/Animator/{id}'(id=${animatorId})}" method="GET">
+      	<input type="submit" class="btn btn-dark btn-lg" value="Update" name="add_Appointment_button">
+      </form>
+    </div>
+  </div>
+  
+  <div class="col-sm-6" >
+    <div class="thumbnail" style = "background-color: rgba(0,0,0,0.5)">
+      <h2><strong>Create Individual Ativity</strong></h2>
+      <img src="https://www.yalispor.com.tr/minio-url/blog/astanga-yoga_5ef5f0ff27cf3.jpg"/>
+      <br><br>
+      <form ACTİON="#" th:action="@{'http://localhost:8080/api/v1/individualactivity/getAll/Animator/{id}'(id=${animatorId})}" method="GET">
+      	<input type="submit" class="btn btn-dark btn-lg" value="Update" name="add_Appointment_button">
+      </form>
+    </div>
+  </div>
+  </div>
+</div>
+</div>
+</body>

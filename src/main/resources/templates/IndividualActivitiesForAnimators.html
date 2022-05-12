@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <title>Vacation Village</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+	<style>
+	
+	td,th
+	{
+		color :white;
+	}
+	
+	
+	
+	/* Add a dark background color with a little bit see-through */
+.navbar {
+  margin-bottom: 0;
+  background-color: #2d2d30;
+  border: 0;
+  font-size: 11px !important;
+  letter-spacing: 4px;
+  opacity: 0.9;
+}
+
+/* Add a gray color to all navbar links */
+.navbar li a, .navbar .navbar-brand {
+  color: #d5d5d5 !important;
+}
+
+/* On hover, the links will turn white */
+.navbar-nav li a:hover {
+  color: #fff !important;
+}
+
+/* The active link */
+.navbar-nav li.active a {
+  color: #fff !important;
+  background-color:#29292c !important;
+}
+
+/* Remove border color from the collapsible button */
+.navbar-default .navbar-toggle {
+  border-color: transparent;
+}
+
+/* Dropdown */
+.open .dropdown-toggle {
+  color: #fff ;
+  background-color: #555 !important;
+}
+
+/* Dropdown links */
+.dropdown-menu li a {
+  color: #000 !important;
+}
+
+/* On hover, the dropdown links will turn red */
+.dropdown-menu li a:hover {
+  background-color: red !important;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Numans');
+
+html,body{
+background-image: url('http://getwallpapers.com/wallpaper/full/a/5/d/544750.jpg');
+background-size: cover;
+background-repeat: no-repeat;
+height: %100;
+weight:%100;
+font-family: 'Numans', sans-serif;
+}
+
+.container{
+height: 100%;
+align-content: center;
+}
+
+.card{
+height: 370px;
+margin-top: auto;
+margin-bottom: auto;
+width: 400px;
+background-color: rgba(0,0,0,0.5) !important;
+}
+.card-header h3{
+color: white;
+}
+h3{
+color: white;
+}
+h2{
+color: white;
+}
+.social_icon{
+position: absolute;
+right: 20px;
+top: -45px;
+}
+
+.input-group-prepend span{
+width: 50px;
+background-color: #FFC312;
+color: black;
+border:0 !important;
+}
+
+input:focus{
+outline: 0 0 0 0  !important;
+box-shadow: 0 0 0 0 !important;
+
+}
+
+.remember{
+color: white;
+}
+
+.remember input
+{
+width: 20px;
+height: 20px;
+margin-left: 15px;
+margin-right: 5px;
+}
+
+.login_btn{
+color: black;
+background-color: #FFC312;
+width: 100px;
+}
+.links{
+color: white;
+}
+
+.links a{
+margin-left: 4px;
+}
+
+
+	</style>
+</head>
+	<body>
+	<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    <br><br>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+ 		<li><a  >Back</a></li>
+        <li><a href="http://localhost:8080">Log out</a></li>
+        <li><a href="" th:text="${animatorId}"/></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+	
+		
+		<div class="container">
+		
+			<h3>Individual Activities</h3>
+			
+			<hr/>
+			
+			<table class="table table-bordered">
+			
+				<thead>
+									
+					<tr>
+						<th>Activity Name</th>
+						<th>Internet Link</th>
+						<th>Activity Type</th>
+						<th>Age Requirement Of The Activity</th>
+						<th>Animator Id</th>
+
+					</tr>
+				</thead>
+				<tbody>
+					
+					<tr th:each="individualActivity: ${IndividualActivities}">
+						<td th:text="${individualActivity.activityName}" />
+						<td th:text="${individualActivity.internetLink}" />
+						<td th:text="${individualActivity.activityType}" />
+						<td th:text="${individualActivity.ageRequirement}" />
+						<td th:text="${individualActivity.animatorId}" />
+						<form th:action="@{'http://localhost:8080/api/v1/individualactivity/{activityId}'(activityId=${individualActivity.activityId})}" method="DELETE">
+						<td><input type="submit" value="Delete" class="btn float-right login_btn" name = "delete_button"></td>
+						</form>
+					</tr>
+				
+				</tbody>
+				
+			</table>
+		</div>
+		  <form action = "#" th:object="${IndividualActivity}" th:action="@{'http://localhost:8080/api/v1/individualactivity/post/Animator'}" method="POST" > 
+			<div class="container">
+  			<h3 class="text-center">Add an Individual Activity</h3>
+  			<div class="row test">
+    			<div class="container">
+      				
+      				<div class="row">
+      				
+        				<div class="col-md-6 form-group">
+          					<input class="form-control" id="activityName" name="activityName" placeholder="Name of the Activity" type="text" required>
+        				</div>
+        				
+        				<div class="col-md-6 form-group">
+          					<input class="form-control" id="internetLink" name="internetLink" placeholder="internet Link" type="text" required>
+        				</div>
+        				
+        				<div class="col-md-6 form-group">
+          					<input class="form-control" id="ageRequirement" name="ageRequirement" placeholder="Enter Age Requirement." type="text" required>
+          				</div>
+          				
+        				<div class="col-md-6 form-group">
+        					
+          					<input class="form-control" id="hourOfActivity" name="hourOfActivity" type="datetime-local" required>
+          				</div>
+          				
+        				<div class="col-md-12 form-group btn-lg text-center" style="margin:auto; width:auto;">
+        					<button class="btn" type="submit" name="register_button">Submit</button>
+        				</div>
+      			</div>
+      			</div>
+    		</div>
+			</div>
+			</form> 
+	</body>
+	
+</html>
